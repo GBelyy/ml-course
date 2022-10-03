@@ -125,7 +125,7 @@ class KNearestNeighbor:
         #       and two broadcast sums.                                         #
         #########################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-        dists = np.sum(self.X_train ** 2, axis = 1) + np.sum(X ** 2, axis = 1)[:, np.newaxis] - 2 * np.dot(X, self.X_train.T)
+        dists = np.sqrt(np.sum(self.X_train ** 2, axis = 1) + np.sum(X ** 2, axis = 1)[:, np.newaxis] - 2 * np.dot(X, self.X_train.T))
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
 
@@ -155,7 +155,7 @@ class KNearestNeighbor:
             # Hint: Look up the function numpy.argsort.                             #
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-            closest_y = self.y_train[np.argmax(dists[i])[:k]]
+            closest_y = self.y_train[np.argsort(dists[i])[:k]]
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
             #########################################################################
             # TODO:                                                                 #
